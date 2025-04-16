@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": "2025-04-15T14:00:26.211Z",
+    "prompt": "hola",
+    "reply": "Error de OpenAI: Incorrect API key provided: undefined. You can find your API key at https://platform.openai.com/account/api-keys."
+  },
+  {
+    "timestamp": "2025-04-16T09:43:02.754Z",
+    "prompt": "hola\n",
+    "reply": "Error de OpenAI: Incorrect API key provided: undefined. You can find your API key at https://platform.openai.com/account/api-keys."
+  }
+]
