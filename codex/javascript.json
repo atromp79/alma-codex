@@ -1,0 +1,24 @@
+[
+    {
+      "nivel": 1,
+      "tema": "Variables",
+      "teoria": "En JavaScript usamos let y const para declarar variables. let permite reasignación; const no.",
+      "ejemplo": "const nombre = 'Juan';\nlet edad = 25;",
+      "buenasPracticas": "Usa const por defecto. Solo usa let si vas a cambiar el valor. Evita var porque causa errores de alcance."
+    },
+    {
+      "nivel": 2,
+      "tema": "Funciones",
+      "teoria": "Las funciones en JavaScript nos permiten reutilizar código. Pueden ser declaradas con function o como funciones flecha.",
+      "ejemplo": "function saludar(nombre) {\n  return 'Hola ' + nombre;\n}",
+      "buenasPracticas": "Nombra las funciones de forma descriptiva. Mantén una sola responsabilidad por función."
+    },
+    {
+      "nivel": 3,
+      "tema": "Condicionales",
+      "teoria": "Las condicionales permiten ejecutar código dependiendo de condiciones lógicas.",
+      "ejemplo": "if (edad >= 18) {\n  console.log('Eres mayor de edad');\n} else {\n  console.log('Eres menor');\n}",
+      "buenasPracticas": "Evita condiciones complejas en una sola línea. Usa else if si hay múltiples caminos lógicos."
+    }
+  ]
+  

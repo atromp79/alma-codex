@@ -1,0 +1,10 @@
+[
+  {
+    "prompt": "¿Qué es una variable en programación?",
+    "response": "Una variable es un espacio de almacenamiento en la memoria para almacenar datos."
+  },
+  {
+    "prompt": "¿Qué es una función?",
+    "response": "Una función es un bloque de código que realiza una tarea específica."
+  }
+]
