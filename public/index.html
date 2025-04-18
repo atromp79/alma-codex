@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>ALMA Codex – Asistente de Código</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🤖 ALMA Codex</h1>
+
+  <h2>Haz una pregunta de programación</h2>
+  <textarea id="prompt" rows="6" placeholder="Escribe tu pregunta aquí..."></textarea><br>
+  <button onclick="sendPrompt()">Preguntar</button>
+
+  <h3>Respuesta:</h3>
+  <pre id="response"></pre>
+
+  <hr>
+
+  <h3>Ver historial</h3>
+  <button onclick="verHistorial()">Mostrar historial</button>
+  <div id="historial"></div>
+
+  <hr>
+
+  <h3>Subir archivo (.txt o .pdf)</h3>
+  <form id="archivoForm">
+    <input type="file" id="archivo" accept=".txt,.pdf" />
+    <button type="submit">Enviar archivo</button>
+  </form>
+  <pre id="archivoRespuesta"></pre>
+
+  <script>
+    async function sendPrompt() {
+      const prompt = document.getElementById("prompt").value;
+      const res = await fetch("/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt })
+      });
+      const data = await res.json();
+      document.getElementById("response").innerText = data.reply;
+    }
+
+    async function verHistorial() {
+      const res = await fetch("/historial");
+      const data = await res.json();
+
+      let html = "<ul>";
+      data.reverse().forEach(entry => {
+        html += `<li><strong>${entry.prompt}</strong><br><em>${entry.reply}</em><br><small>${entry.timestamp}</small></li><br>`;
+      });
+      html += "</ul>";
+
+      document.getElementById("historial").innerHTML = html;
+    }
+
+    document.getElementById("archivoForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const archivo = document.getElementById("archivo").files[0];
+      if (!archivo) return;
+
+      const formData = new FormData();
+      formData.append("archivo", archivo);
+
+      const res = await fetch("/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+      document.getElementById("archivoRespuesta").innerText = data.reply;
+    });
+  </script>
+</body>
+</html>
+//<!-- ... código anterior ... -->
+
+<h3>Subir archivo (.txt)</h3>
+<form id="archivoForm">
+  <input type="file" id="archivo" accept=".txt" />
+  <button type="submit">Enviar archivo</button>
+</form>
+<pre id="archivoRespuesta"></pre>
+
+<hr>
+<h3>📘 Aprender JavaScript</h3>
+<button onclick="aprenderJS()">Mostrar lección</button>
+<div id="leccionJS"></div>
+
+<script>
+  // Función para mostrar lecciones
+  async function aprenderJS() {
+    const res = await fetch('/learn/javascript');
+    const data = await res.json();
+
+    let html = "<h4>Lecciones de JavaScript</h4><ul>";
+    data.forEach(leccion => {
+      html += `
+        <li>
+          <strong>Nivel ${leccion.nivel}: ${leccion.tema}</strong><br>
+          <b>📖 Teoría:</b> ${leccion.teoria}<br>
+          <b>💻 Ejemplo:</b><pre>${leccion.ejemplo}</pre>
+          <b>✅ Buenas prácticas:</b> ${leccion.buenasPracticas}<br><br>
+        </li>
+      `;
+    });
+    html += "</ul>";
+
+    document.getElementById("leccionJS").innerHTML = html;
+  }
+</script>
+
+</body>
+</html>

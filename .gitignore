@@ -134,3 +134,19 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+//nueva secion\\
+cat << 'EOF' >> .gitignore
+
+# Datos y estructura propia del proyecto
+datasets/           # training data (questions_answers.json, etc.)
+history/            # historial de conversaciones
+scripts/            # scripts de preprocessing, fine‑tune, utils…
+models/             # checkpoints y fine_tuned_model
+# logs/ ya está cubierto más arriba
+
+# Para permitir que Git trackee carpetas vacías:
+!datasets/.gitkeep
+!history/.gitkeep
+!scripts/.gitkeep
+!models/.gitkeep
+EOF
